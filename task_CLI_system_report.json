@@ -1,0 +1,18 @@
+{
+  "single-action": [
+    "`OPEN` Terminal",
+    "`TYPE` 'top -n 1 > top_output.txt' and press ENTER",
+    "`TYPE` 'df -h > disk_usage.txt' and press ENTER",
+    "`TYPE` 'cat top_output.txt disk_usage.txt > ~/Desktop/system_report.txt' and press ENTER",
+    "`CLOSE` Terminal"
+  ],
+  "grouped-action": [
+    [
+      "`RUN` 'top -n 1 > top_output.txt'",
+      "`RUN` 'df -h > disk_usage.txt'"
+    ],
+    [
+      "`RUN` 'cat top_output.txt disk_usage.txt > ~/Desktop/system_report.txt'"
+    ]
+  ]
+}
