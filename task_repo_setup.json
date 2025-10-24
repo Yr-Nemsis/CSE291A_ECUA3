@@ -1,0 +1,38 @@
+{
+  "single-action": [
+    "`HOTKEY` 'Ctrl+Alt+T'",
+    "`TYPING` 'mkdir -p ~/projects && cd ~/projects'",
+    "`PRESS` 'Enter'",
+    "`TYPING` 'git clone https://github.com/example/demo.git'",
+    "`PRESS` 'Enter'",
+    "`TYPING` 'python3 -m venv .venv'",
+    "`PRESS` 'Enter'",
+    "`TYPING` 'source .venv/bin/activate'",
+    "`PRESS` 'Enter'",
+    "`TYPING` 'pip install -r requirements.txt'",
+    "`PRESS` 'Enter'"
+  ],
+  "grouped-action": [
+    [
+      "`HOTKEY` 'Ctrl+Alt+T'",
+      "`TYPING` 'mkdir -p ~/projects && cd ~/projects'",
+      "`PRESS` 'Enter'"
+    ],
+    [
+      "`TYPING` 'git clone https://github.com/example/demo.git'",
+      "`PRESS` 'Enter'"
+    ],
+    [
+      "`TYPING` 'python3 -m venv .venv'",
+      "`PRESS` 'Enter'"
+    ],
+    [
+      "`TYPING` 'source .venv/bin/activate'",
+      "`PRESS` 'Enter'"
+    ],
+    [
+      "`TYPING` 'pip install -r requirements.txt'",
+      "`PRESS` 'Enter'"
+    ]
+  ]
+}

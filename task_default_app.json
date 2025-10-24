@@ -1,0 +1,33 @@
+{
+  "single-action": [
+    "`HOTKEY` 'Alt+Tab'",
+    "`CLICK` 'Docs'",
+    "`RIGHT_CLICK` 'readme.md'",
+    "`CLICK` 'Properties'",
+    "`CLICK` 'Open With'",
+    "`CLICK` 'Visual Studio Code'",
+    "`CLICK` 'Set as default'",
+    "`CLICK` 'Close'",
+    "`DOUBLE_CLICK` 'readme.md'"
+  ],
+  "grouped-action": [
+    [
+      "`HOTKEY` 'Alt+Tab'",
+      "`CLICK` 'Docs'"
+    ],
+    [
+      "`RIGHT_CLICK` 'readme.md'",
+      "`CLICK` 'Properties'"
+    ],
+    [
+      "`CLICK` 'Open With'",
+      "`CLICK` 'Visual Studio Code'",
+      "`CLICK` 'Set as default'"
+    ],
+    [
+      "`CLICK` 'Close'",
+      "`DOUBLE_CLICK` 'readme.md'"
+    ]
+  ]
+}
+

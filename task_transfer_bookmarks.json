@@ -1,0 +1,47 @@
+{
+  "single-action": [
+    "`HOTKEY` 'Alt+Tab'",
+    "`HOTKEY` 'Ctrl+Shift+O'",
+    "`CLICK` 'Import and Backup'",
+    "`CLICK` 'Export Bookmarks to HTML…'",
+    "`CLICK` 'Desktop'",
+    "`TYPING` 'firefox_bookmarks.html'",
+    "`PRESS` 'Enter'",
+    "`HOTKEY` 'Alt+Tab'",
+    "`HOTKEY` 'Ctrl+Shift+O'",
+    "`CLICK` '⋮'",
+    "`CLICK` 'Import bookmarks'",
+    "`CLICK` 'Desktop'",
+    "`CLICK` 'firefox_bookmarks.html'",
+    "`PRESS` 'Enter'"
+  ],
+  "grouped-action": [
+    [
+      "`HOTKEY` 'Alt+Tab'",
+      "`HOTKEY` 'Ctrl+Shift+O'"
+    ],
+    [
+      "`CLICK` 'Import and Backup'",
+      "`CLICK` 'Export Bookmarks to HTML…'"
+    ],
+    [
+      "`CLICK` 'Desktop'",
+      "`TYPING` 'firefox_bookmarks.html'",
+      "`PRESS` 'Enter'"
+    ],
+    [
+      "`HOTKEY` 'Alt+Tab'",
+      "`HOTKEY` 'Ctrl+Shift+O'"
+    ],
+    [
+      "`CLICK` '⋮'",
+      "`CLICK` 'Import bookmarks'"
+    ],
+    [
+      "`CLICK` 'Desktop'",
+      "`CLICK` 'firefox_bookmarks.html'",
+      "`PRESS` 'Enter'"
+    ]
+  ]
+}
+
