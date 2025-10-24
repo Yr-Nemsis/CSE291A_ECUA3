@@ -1,0 +1,31 @@
+{
+  "single-action": [
+    "`OPEN` Audacity",
+    "`CLICK` File -> Open -> ~/Downloads/meeting.mp3",
+    "`SELECT` the first 0–10 seconds of audio",
+    "`DELETE` the selected segment",
+    "`EXPORT` as 'meeting_trimmed.wav'",
+    "`OPEN` Whisper.cpp GUI",
+    "`UPLOAD` 'meeting_trimmed.wav'",
+    "`CLICK` 'Transcribe'",
+    "`SAVE` the transcript as 'meeting.txt'",
+    "`OPEN` LibreOffice Writer",
+    "`INSERT` 'meeting.txt' content",
+    "`EXPORT` the document as PDF to '~/Desktop/meeting_summary.pdf'"
+  ],
+  "grouped-action": [
+    [
+      "`OPEN` Audacity",
+      "`OPEN` ~/Downloads/meeting.mp3",
+      "`DELETE` the first 10 seconds"
+    ],
+    [
+      "`RUN` Whisper.cpp to transcribe 'meeting_trimmed.wav'"
+    ],
+    [
+      "`OPEN` LibreOffice Writer",
+      "`INSERT` 'meeting.txt'",
+      "`EXPORT` PDF to Desktop"
+    ]
+  ]
+}
