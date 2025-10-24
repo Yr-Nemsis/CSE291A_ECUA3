@@ -1,0 +1,58 @@
+{
+  "single-action": [
+    "`CLICK` the 'Terminal' icon to open a shell",
+    "`TYPE` mkdir -p ~/Archives/Old",
+    "`KEY` ENTER",
+    "`TYPE` outfile=~/Desktop/old_downloads_manifest.csv",
+    "`KEY` ENTER",
+    "`TYPE` echo \"path,size_bytes,mtime_iso,sha256\" > \"$outfile\"",
+    "`KEY` ENTER",
+    "`TYPE` find ~/Downloads -type f -size +500M -atime +90 -print0 | while IFS= read -r -d '' f; do size=$(stat -c%s \"$f\"); mtime=$(date -d @$(stat -c%Y \"$f\") --iso-8601=seconds); sha=$(sha256sum \"$f\" | awk '{print $1}'); echo \"\\\"$f\\\",$size,$mtime,$sha\" >> \"$outfile\"; done",
+    "`KEY` ENTER",
+    "`TYPE` cat \"$outfile\" | wc -l",
+    "`KEY` ENTER",
+    "`TYPE` find ~/Downloads -type f -size +500M -atime +90 -print0 | xargs -0 -I{} mv -v \"{}\" ~/Archives/Old/",
+    "`KEY` ENTER",
+    "`TYPE` tar -C ~/Archives -czf ~/Desktop/Old_Downloads_Archive.tgz Old",
+    "`KEY` ENTER",
+    "`TYPE` ls -lh ~/Desktop/Old_Downloads_Archive.tgz",
+    "`KEY` ENTER",
+    "`TYPE` head -n 5 \"$outfile\"",
+    "`KEY` ENTER",
+    "`TYPE` echo 'Done: manifest at ~/Desktop/old_downloads_manifest.csv and archive at ~/Desktop/Old_Downloads_Archive.tgz'",
+    "`KEY` ENTER",
+    "`CLICK` the window 'Close' button for Terminal"
+  ],
+  "grouped-action": [
+    [
+      "`CLICK` 'Terminal'",
+      "`TYPE` mkdir -p ~/Archives/Old",
+      "`KEY` ENTER"
+    ],
+    [
+      "`TYPE` outfile=~/Desktop/old_downloads_manifest.csv",
+      "`KEY` ENTER",
+      "`TYPE` echo \"path,size_bytes,mtime_iso,sha256\" > \"$outfile\"",
+      "`KEY` ENTER"
+    ],
+    [
+      "`TYPE` find ~/Downloads -type f -size +500M -atime +90 -print0 | while IFS= read -r -d '' f; do size=$(stat -c%s \"$f\"); mtime=$(date -d @$(stat -c%Y \"$f\") --iso-8601=seconds); sha=$(sha256sum \"$f\" | awk '{print $1}'); echo \"\\\"$f\\\",$size,$mtime,$sha\" >> \"$outfile\"; done",
+      "`KEY` ENTER"
+    ],
+    [
+      "`TYPE` cat \"$outfile\" | wc -l",
+      "`KEY` ENTER",
+      "`TYPE` find ~/Downloads -type f -size +500M -atime +90 -print0 | xargs -0 -I{} mv -v \"{}\" ~/Archives/Old/",
+      "`KEY` ENTER"
+    ],
+    [
+      "`TYPE` tar -C ~/Archives -czf ~/Desktop/Old_Downloads_Archive.tgz Old",
+      "`KEY` ENTER",
+      "`TYPE` ls -lh ~/Desktop/Old_Downloads_Archive.tgz",
+      "`KEY` ENTER",
+      "`TYPE` head -n 5 \"$outfile\"",
+      "`KEY` ENTER",
+      "`CLICK` 'Close' on Terminal"
+    ]
+  ]
+}

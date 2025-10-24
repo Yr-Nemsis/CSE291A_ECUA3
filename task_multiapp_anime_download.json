@@ -1,0 +1,74 @@
+{
+  "single-action": [
+    "`CLICK` the 'Firefox' icon to open the browser",
+    "`CLICK` the address bar and `TYPE` 'https://kisssub.org/'",
+    "`KEY` ENTER",
+    "`WAIT` for the homepage to load",
+    "`CLICK` the search box on the website",
+    "`TYPE` the Chinese anime name (e.g., '鬼灭之刃')",
+    "`KEY` ENTER",
+    "`WAIT` for search results to load",
+    "`SCROLL` down until the correct anime title appears",
+    "`CLICK` the anime title link to open the detail page",
+    "`WAIT` for the anime detail page to load",
+    "`SCROLL` to the magnet link section placeholder",
+    "`CLICK` the '开启虫洞' button",
+    "`WAIT` for a new browser tab or window to open",
+    "`CLICK` the button labeled '点击插入脚本' (Insert Script)",
+    "`WAIT` for the page to confirm '脚本已插入' (script inserted)",
+    "`CLICK` the browser tab for the original anime detail page",
+    "`CLICK` the 'Refresh' button or press `CTRL+R` to reload the page",
+    "`WAIT` for the refreshed content to load",
+    "`SCROLL` until the new '磁链下载' (magnet download) button appears",
+    "`CLICK` the '磁链下载' button",
+    "`CLICK` 'Open with qBittorrent' in the browser prompt",
+    "`CLICK` 'OK' to confirm launching the torrent client",
+    "`WAIT` until qBittorrent opens",
+    "`CLICK` the 'Browse' button in qBittorrent to choose save directory",
+    "`SELECT` '~/Videos/Anime/' and `CLICK` 'Select Folder'",
+    "`CLICK` 'OK' to start the download",
+    "`WAIT` until the progress bar reaches 100%",
+    "`CLICK` 'Open destination folder' in qBittorrent",
+    "`DOUBLE-CLICK` the completed video file to open in VLC",
+    "`VERIFY` that playback starts normally",
+    "`CLOSE` VLC and qBittorrent windows"
+  ],
+  "grouped-action": [
+    [
+      "`CLICK` 'Firefox' icon",
+      "`TYPE` 'https://kisssub.org/' in address bar",
+      "`KEY` ENTER"
+    ],
+    [
+      "`CLICK` the website search box",
+      "`TYPE` Chinese anime name",
+      "`KEY` ENTER",
+      "`SCROLL` to correct title",
+      "`CLICK` anime link"
+    ],
+    [
+      "`SCROLL` to magnet section",
+      "`CLICK` '开启虫洞' button",
+      "`WAIT` for new tab",
+      "`CLICK` '点击插入脚本'",
+      "`WAIT` until '脚本已插入' text appears",
+      "`RETURN` to original tab",
+      "`REFRESH` page",
+      "`WAIT` until '磁链下载' button visible"
+    ],
+    [
+      "`CLICK` '磁链下载' button",
+      "`CLICK` 'Open with qBittorrent'",
+      "`CLICK` 'OK'"
+    ],
+    [
+      "`CLICK` 'Browse' → select '~/Videos/Anime/'",
+      "`CLICK` 'OK' to start download",
+      "`WAIT` until complete",
+      "`CLICK` 'Open destination folder'",
+      "`DOUBLE-CLICK` file to open in VLC",
+      "`VERIFY` playback",
+      "`CLOSE` VLC"
+    ]
+  ]
+}

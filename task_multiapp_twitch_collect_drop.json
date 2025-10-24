@@ -1,0 +1,57 @@
+{
+  "single-action": [
+    "`CLICK` the 'Firefox' icon to open the browser",
+    "`CLICK` the address bar and `TYPE` 'https://www.twitch.tv/'",
+    "`KEY` ENTER",
+    "`WAIT` for Twitch homepage to load",
+    "`CLICK` 'Log In' button",
+    "`CLICK` email/username input and `TYPE` '<USERNAME_PLACEHOLDER>'",
+    "`CLICK` password input and `TYPE` '<PASSWORD_PLACEHOLDER>'",
+    "`CLICK` 'Log In' or press `ENTER`",
+    "`WAIT` for login to complete (handle saved-session flow if already logged in)",
+    "`CLICK` the address bar and `TYPE` the streamer's channel URL (e.g., 'https://www.twitch.tv/<streamer>')",
+    "`KEY` ENTER",
+    "`WAIT` for the streamer page and player to load",
+    "`CLICK` the video player if playback is paused to start playing",
+    "`ENSURE` video is playing (play icon changed or currentTime > 0)",
+    "`WATCH` until the drop eligibility criteria/time is met (agent monitors the 'Drops' or 'Claim' prompt)",
+    "`WAIT` until a 'Claim' or 'Collect' button appears on the player or in the channel panel",
+    "`CLICK` the 'Claim' / 'Collect' button",
+    "`WAIT` for the confirmation modal or 'Added to Inventory' message",
+    "`CLICK` the user avatar → 'Drops' or 'Inventory'",
+    "`VERIFY` the claimed drop appears in Drops/Inventory list",
+    "`CLOSE` any modals and the browser tab"
+  ],
+  "grouped-action": [
+    [
+      "`CLICK` 'Firefox' icon",
+      "`TYPE` 'https://www.twitch.tv/' in address bar",
+      "`KEY` ENTER",
+      "`WAIT` for page to load"
+    ],
+    [
+      "`CLICK` 'Log In'",
+      "`TYPE` '<USERNAME_PLACEHOLDER>' in username field",
+      "`TYPE` '<PASSWORD_PLACEHOLDER>' in password field",
+      "`CLICK` 'Log In' or `KEY` ENTER",
+      "`WAIT` until login completes"
+    ],
+    [
+      "`TYPE` streamer URL in address bar",
+      "`KEY` ENTER",
+      "`WAIT` for streamer page and player",
+      "`CLICK` player if paused",
+      "`ENSURE` playback started"
+    ],
+    [
+      "`WATCH` and monitor UI for 'Claim'/'Collect' button",
+      "`CLICK` 'Claim' when visible",
+      "`WAIT` for confirmation message"
+    ],
+    [
+      "`OPEN` user avatar → 'Drops'/'Inventory'",
+      "`VERIFY` claimed item present",
+      "`CLOSE` browser tab"
+    ]
+  ]
+}
