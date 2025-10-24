@@ -1,0 +1,63 @@
+{
+  "single-action": [
+    "`CLICK` the application launcher",
+    "`CLICK` 'Firefox'",
+    "`CLICK` the address bar",
+    "`TYPE` 'https://pytorch.org'",
+    "`PRESS_KEY` Enter",
+    "`CLICK` 'Get Started' (or 'Start Locally' / 'Install' on the PyTorch site)",
+    "`CLICK` the dropdown labeled 'OS'",
+    "`CLICK` 'Linux'",
+    "`CLICK` the dropdown labeled 'Package'",
+    "`CLICK` 'Pip'",
+    "`CLICK` the dropdown labeled 'Language'",
+    "`CLICK` 'Python'",
+    "`CLICK` the dropdown labeled 'Compute Platform'",
+    "`CLICK` CUDA",
+    "`CLICK` the copy button for the generated install command (or select the command text)",
+    "`PRESS_KEY` Ctrl+C",
+    "`CLICK` the application launcher",
+    "`CLICK` 'Terminal'",
+    "`TYPE` the copied command into the terminal (use Ctrl+Shift+V to paste)",
+    "`PRESS_KEY` Ctrl+Shift+V",
+    "`PRESS_KEY` Enter",
+    "`TYPE` \"python3 -c \\\"import torch; print(torch.__version__); print(torch.cuda.is_available())\\\"\"",
+    "`PRESS_KEY` Enter"
+  ],
+  "grouped-action": [
+    [
+      "`CLICK` the application launcher",
+      "`CLICK` 'Firefox'",
+      "`CLICK` the address bar",
+      "`TYPE` 'https://pytorch.org'",
+      "`PRESS_KEY` Enter"
+    ],
+    ["`CLICK` 'Get Started' (or 'Start Locally' / 'Install' on the PyTorch site)",
+      "`CLICK` the dropdown labeled 'OS'",
+      "`CLICK` 'Linux'",
+      "`CLICK` the dropdown labeled 'Package'",
+      "`CLICK` 'Pip'",
+      "`CLICK` the dropdown labeled 'Language'",
+      "`CLICK` 'Python'",
+      "`CLICK` the dropdown labeled 'Compute Platform'",
+      "`CLICK` 'CPU' (choose 'CUDA' version instead if desired)"
+    ],
+    [
+      "`CLICK` the copy button for the generated install command (or select the command text)",
+      "`PRESS_KEY` Ctrl+C"
+    ],
+    [
+      "`CLICK` the application launcher",
+      "`CLICK` 'Terminal'"
+    ],
+    [
+      "`TYPE` the copied command into the terminal (use Ctrl+Shift+V to paste)",
+      "`PRESS_KEY` Ctrl+Shift+V",
+      "`PRESS_KEY` Enter"
+    ],
+    [
+      "`TYPE` \"python3 -c \\\"import torch; print(torch.__version__); print(torch.cuda.is_available())\\\"\"",
+      "`PRESS_KEY` Enter"
+    ]
+  ]
+}
