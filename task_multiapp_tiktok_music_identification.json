@@ -1,0 +1,36 @@
+{
+    "single-action": [
+        "`OPEN` Google Chrome",
+        "`TYPE` 'tiktok.com' in the address bar and `PRESS` Enter",
+        "`CLICK` the search icon on TikTok",
+        "`TYPE` 'anime fan edits' and `PRESS` Enter",
+        "`SCROLL` through results and `CLICK` one video to play",
+        "`WAIT` until the video starts playing",
+        "`CLICK` the Extensions icon in the Chrome toolbar",
+        "`SELECT` the installed plugin Shazam",
+        "`WAIT` for the result to appear",
+        "`PRESS` Ctrl+S in the extension interface if a save option is shown",
+        "`CHOOSE` Desktop as the save destination",
+        "`OPEN` File Explorer",
+        "`NAVIGATE` to Desktop",
+        "`VERIFY` that the saved file or metadata exists"
+    ],
+    "grouped-action": [
+        [
+            "`OPEN` Chrome",
+            "`NAVIGATE` to TikTok",
+            "`SEARCH` 'anime fan edits'"
+        ],
+        [
+            "`CLICK` a video result",
+            "`PLAY` the clip"
+        ],
+        [
+            "`OPEN` Chrome Extensions menu",
+            "`LAUNCH` the installed plugin"
+        ],
+        [
+            "`INTERACT` with the plugin interface to analyze the video"
+        ]
+    ]
+}

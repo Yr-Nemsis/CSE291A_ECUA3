@@ -1,0 +1,61 @@
+{
+    "single-action": [
+        "`OPEN` Firefox",
+        "`TYPE` 'RateMyProfessors UC San Diego' in the address bar and `PRESS` Enter",
+        "`CLICK` the UC San Diego page on RateMyProfessors",
+        "`OPEN` Files (Nautilus)",
+        "`NAVIGATE` to Desktop",
+        "`RIGHT-CLICK` and `SELECT` 'New Document → Spreadsheet'",
+        "`RENAME` the file to 'ratings.xlsx'",
+        "`DOUBLE-CLICK` to open it in LibreOffice Calc",
+        "`TYPE` headers into row 1: 'Professor', 'Rating'",
+        "`SWITCH` to Firefox",
+        "`SEARCH` '{Professor1}' and `PRESS` Enter",
+        "`CLICK` the first result",
+        "`COPY` the overall rating number",
+        "`SWITCH` to LibreOffice Calc",
+        "`TYPE` '{Professor1}' in cell A2 and paste the rating in B2`",
+        "`SWITCH` to Firefox",
+        "`SEARCH` '{Professor2}' and `PRESS` Enter",
+        "`CLICK` the first result",
+        "`COPY` the overall rating number",
+        "`SWITCH` to LibreOffice Calc",
+        "`TYPE` '{Professor2}' in cell A3 and paste the rating in B3`",
+        "`SWITCH` to Firefox",
+        "`SEARCH` '{Professor3}' and `PRESS` Enter",
+        "`CLICK` the first result",
+        "`COPY` the overall rating number",
+        "`SWITCH` to LibreOffice Calc",
+        "`TYPE` '{Professor3}' in cell A4 and paste the rating in B4`",
+        "`PRESS` Ctrl+S to save the workbook",
+        "`CLOSE` LibreOffice Calc",
+        "`OPEN` Files (Nautilus)",
+        "`CHECK` that 'ratings.xlsx' exists on Desktop"
+    ],
+    "grouped-action": [
+        [
+            "`OPEN` Firefox",
+            "`SEARCH` 'RateMyProfessors UC San Diego'",
+            "`CLICK` UC San Diego school page"
+        ],
+        [
+            "`OPEN` Files (Nautilus)",
+            "`NAVIGATE` to Desktop",
+            "`CREATE` new spreadsheet named 'ratings.xlsx'",
+            "`OPEN` it in LibreOffice Calc and type headers 'Professor', 'Rating'"
+        ],
+        [
+            "`SEARCH` '{Professor1}' in Firefox, copy rating, and paste to Calc row 2"
+        ],
+        [
+            "`SEARCH` '{Professor2}' in Firefox, copy rating, and paste to Calc row 3"
+        ],
+        [
+            "`SEARCH` '{Professor3}' in Firefox, copy rating, and paste to Calc row 4"
+        ],
+        [
+            "`SAVE` and `CLOSE` LibreOffice Calc",
+            "`OPEN` Files (Nautilus) and `CHECK` that 'ratings.xlsx' exists on Desktop"
+        ]
+    ]
+}
