@@ -1,3 +1,5 @@
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+/src/ecua/results/*
+/src/ecua/docker_vm_data/*

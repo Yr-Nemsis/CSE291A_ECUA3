@@ -9,6 +9,7 @@
       "parameters": {
         "command": [
           "google-chrome",
+          "--start-maximized",
           "--remote-debugging-port=1337"
         ]
       }

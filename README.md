@@ -64,6 +64,16 @@ In the Jupyter UI, open:
 
 ---
 
+### 4. Start the model hosting server
+
+    cd ./src/ecua
+    uvicorn ui_tars_server:app --host 0.0.0.0 --port 8000
+
+To test the server is working, run:
+
+    python3 test_client.py
+
+
 ## Notes
 
 - This repository currently focuses on **integration** of OSWorld + Agent_S into one runnable environment on CPU-only servers.
