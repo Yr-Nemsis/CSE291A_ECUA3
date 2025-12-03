@@ -48,9 +48,10 @@ args = SimpleNamespace(
     # grounding model config (reuse same endpoint/model for now) testing with UI-TARS
     # UITARS 2B from hugging face(encoding issue?) InternVL3_5:4b(wrong detection) UITARS 1.5B(16gb, too slow)
     ground_provider="openai",
-    ground_url="http://localhost:11434/v1",
+    # ground_url="http://localhost:11434/v1",
+    ground_url="http://localhost:8000/v1", # new endpoint for UI-TARS
     ground_api_key="ollama",
-    ground_model="qwen2.5vl:7b",
+    ground_model="ui-tars-7b",
     # grounding_width=1920,
     # grounding_height=1080,
     grounding_width=1280,
@@ -239,6 +240,7 @@ system_prefix = ''
 #   when they interfere with the task.
 # - Never assume a change succeeded without checking the UI; when in doubt,
 #   perform a small verification step in Chrome.
+# - Give only one grounding action per step; do not chain multiple clicks or types
 
 # You must act like a careful, detail-oriented human user who is proficient with
 # Google Chrome and the web. Your actions should always be explainable by what you

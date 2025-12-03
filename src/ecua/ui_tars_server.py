@@ -2,6 +2,8 @@ import re
 import time
 import uuid
 from typing import List, Optional
+import base64
+from io import BytesIO
 
 import torch
 from PIL import Image
@@ -123,10 +125,49 @@ def scale_to_pixels(x_1000: int, y_1000: int, width: int, height: int) -> tuple[
 
 
 def call_grounding_model(image_path: str, query: str) -> tuple[int, int, str]:
-    raw, orig_w, orig_h = call_ui_tars_raw(image_path, query)
-    x_1000, y_1000 = parse_xy_from_string(raw)
+    # 1. 根据传入的是路径还是 data URL 来获取 PIL.Image
+    if image_path.startswith("data:image"):
+        # data:image/png;base64,xxxx 这种
+        header, encoded = image_path.split(",", 1)
+        image_bytes = base64.b64decode(encoded)
+        img = Image.open(BytesIO(image_bytes)).convert("RGB")
+    else:
+        # 还是老的本地路径/文件名逻辑
+        img = Image.open(image_path).convert("RGB")
+
+    orig_w, orig_h = img.size
+
+    # 2. 后面保持你原来的逻辑（只把原来的 Image.open(image_path) 换成 img）
+    messages = build_uground_messages(query)
+
+    chat_prompt = processor.apply_chat_template(
+        messages,
+        add_generation_prompt=True,
+        tokenize=False,
+    )
+
+    inputs = processor(
+        text=[chat_prompt],
+        images=[img],
+        return_tensors="pt",
+    )
+    inputs = {k: v.to("cpu") for k, v in inputs.items()}
+
+    with torch.inference_mode():
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=128,
+            do_sample=False,
+            temperature=0.0,
+        )
+
+    gen_ids = outputs[0][inputs["input_ids"].shape[-1]:]
+    reply = processor.decode(gen_ids, skip_special_tokens=True).strip()
+
+    x_1000, y_1000 = parse_xy_from_string(reply)
     x_px, y_px = scale_to_pixels(x_1000, y_1000, orig_w, orig_h)
-    return x_px, y_px, raw
+    return x_px, y_px, reply
+
 
 
 # ============
