@@ -12,18 +12,51 @@ from pydantic import BaseModel
 from transformers import AutoProcessor, AutoModelForVision2Seq
 
 
-MODEL_ID = "ByteDance-Seed/UI-TARS-7B-DPO"
+# ============================
+# 1. Load multiple VLM models
+# ============================
+#
+# We support hosting multiple models behind the same
+# OpenAI-compatible /v1/chat/completions endpoint.
+# The concrete model is selected via ChatRequest.model.
+#
+# You can change the IDs below to the exact checkpoints
+# you want to use.
 
-# ==== 1. Load processor + model on CPU only ====
-processor = AutoProcessor.from_pretrained(MODEL_ID)
+MODEL_CONFIGS = {
+    # UGround 2B
+    "uground-2b": "osunlp/UGround-V1-2B",
+    # Qwen2-VL 2B
+    "qwen2-vl-2b": "Qwen/Qwen2-VL-2B",
+}
 
-model = AutoModelForVision2Seq.from_pretrained(
-    MODEL_ID,
-    torch_dtype=torch.bfloat16,   # smaller than float32, fine on CPU
-    device_map="cpu",
-    low_cpu_mem_usage=True,
-)
-model.eval()
+DEFAULT_MODEL_KEY = "uground-2b"
+
+
+def _load_all_models():
+    """
+    Load all processors + models once on CPU.
+    Returns:
+        processors: dict[str, AutoProcessor]
+        models: dict[str, AutoModelForVision2Seq]
+    """
+    processors = {}
+    models = {}
+    for key, model_id in MODEL_CONFIGS.items():
+        proc = AutoProcessor.from_pretrained(model_id)
+        mdl = AutoModelForVision2Seq.from_pretrained(
+            model_id,
+            torch_dtype=torch.bfloat16,
+            device_map="cpu",
+            low_cpu_mem_usage=True,
+        )
+        mdl.eval()
+        processors[key] = proc
+        models[key] = mdl
+    return processors, models
+
+
+PROCESSORS, MODELS = _load_all_models()
 
 
 # =====================
@@ -57,13 +90,18 @@ Answer:"""
     ]
 
 
-def call_ui_tars_raw(image_path: str, query: str) -> tuple[str, int, int]:
+def call_ui_tars_raw(
+    image: Image.Image,
+    query: str,
+    processor: AutoProcessor,
+    model: AutoModelForVision2Seq,
+) -> tuple[str, int, int]:
     """
     Send one screenshot + grounding query to UI-TARS, return:
     (raw_text_response, orig_width, orig_height).
     """
-    # Load original image
-    img = Image.open(image_path).convert("RGB")
+    # Image is already loaded as PIL.Image
+    img = image
     orig_w, orig_h = img.size
 
     # Build messages for processor
@@ -124,7 +162,24 @@ def scale_to_pixels(x_1000: int, y_1000: int, width: int, height: int) -> tuple[
     return x_px, y_px
 
 
-def call_grounding_model(image_path: str, query: str) -> tuple[int, int, str]:
+def call_grounding_model(
+    image_path: str,
+    query: str,
+    model_key: str,
+) -> tuple[int, int, str]:
+    """
+    Run grounding with the selected model.
+
+    model_key must be one of MODEL_CONFIGS keys, e.g.:
+        - "uground-2b"
+        - "qwen2-vl-2b"
+    """
+    if model_key not in PROCESSORS:
+        raise ValueError(f"Unknown model key: {model_key}. Available: {list(PROCESSORS.keys())}")
+
+    processor = PROCESSORS[model_key]
+    model = MODELS[model_key]
+
     # 1. 根据传入的是路径还是 data URL 来获取 PIL.Image
     if image_path.startswith("data:image"):
         # data:image/png;base64,xxxx 这种
@@ -135,34 +190,13 @@ def call_grounding_model(image_path: str, query: str) -> tuple[int, int, str]:
         # 还是老的本地路径/文件名逻辑
         img = Image.open(image_path).convert("RGB")
 
-    orig_w, orig_h = img.size
-
-    # 2. 后面保持你原来的逻辑（只把原来的 Image.open(image_path) 换成 img）
-    messages = build_uground_messages(query)
-
-    chat_prompt = processor.apply_chat_template(
-        messages,
-        add_generation_prompt=True,
-        tokenize=False,
+    # Reuse the shared raw call helper
+    reply, orig_w, orig_h = call_ui_tars_raw(
+        image=img,
+        query=query,
+        processor=processor,
+        model=model,
     )
-
-    inputs = processor(
-        text=[chat_prompt],
-        images=[img],
-        return_tensors="pt",
-    )
-    inputs = {k: v.to("cpu") for k, v in inputs.items()}
-
-    with torch.inference_mode():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=128,
-            do_sample=False,
-            temperature=0.0,
-        )
-
-    gen_ids = outputs[0][inputs["input_ids"].shape[-1]:]
-    reply = processor.decode(gen_ids, skip_special_tokens=True).strip()
 
     x_1000, y_1000 = parse_xy_from_string(reply)
     x_px, y_px = scale_to_pixels(x_1000, y_1000, orig_w, orig_h)
@@ -252,8 +286,11 @@ def chat_completions(req: ChatRequest):
             status_code=400,
             detail="Need both text description and image_url in user content.",
         )
+    # Decide which underlying model to use
+    # If req.model is None, fall back to DEFAULT_MODEL_KEY
+    model_key = req.model or DEFAULT_MODEL_KEY
 
-    x_px, y_px, raw = call_grounding_model(image_path, description)
+    x_px, y_px, raw = call_grounding_model(image_path, description, model_key=model_key)
 
     msg = ChatMessage(
         role="assistant",
