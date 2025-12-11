@@ -1,3 +1,4 @@
+# === OSWorld core deps ===
 numpy~=1.24.4
 Pillow~=11.0.0
 fabric
@@ -28,7 +29,6 @@ PyGetWindow
 rapidfuzz
 pyacoustid
 pygame
-opencv-python-headless
 ImageHash
 scikit-image
 librosa
@@ -70,3 +70,21 @@ alibabacloud_tea_openapi
 alibabacloud_tea_util
 json_minify
 json_repair
+
+# === Extra Agent_S deps ===
+fastapi
+uvicorn
+paddleocr
+paddlepaddle
+together
+scikit-learn
+websockets
+toml
+black
+pytesseract
+google-genai
+
+# Platform-specific dependencies
+pyobjc; platform_system == "Darwin"
+pywinauto; platform_system == "Windows"
+pywin32; platform_system == "Windows"
